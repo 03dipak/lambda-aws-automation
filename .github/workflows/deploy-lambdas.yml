@@ -24,19 +24,23 @@ jobs:
           
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
-        with:
+        with:   
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
+        
+        strategy:
+            matrix:
+                lambda: [lambda1, lambda2]
 
-      - name: Install Dependencies
+        
+      - name: Install Dependencies for ${{ matrix.lambda }}
+        working-directory: lambdas/${{ matrix.lambda }}
         run: |
-          pip install -r requirements.txt -t
-
-      - name: Deploy Lambda1
+          pip install -r requirements.txt -t .  
+        
+      - name: Deploy Lambda ${{ matrix.lambda }}
+        working-directory: lambdas/${{ matrix.lambda }}
         run: |
-          python scripts/deploy_lambda.py lambda1 lambdas/lambda1 ${{ secrets.ROLE_ARN }} ${{ secrets.AWS_REGION }}
-
-      - name: Deploy Lambda2
-        run: |
-          python scripts/deploy_lambda.py lambda2 lambdas/lambda2 ${{ secrets.ROLE_ARN }} ${{ secrets.AWS_REGION }}
+          python ../../scripts/deploy_lambda.py ${{ matrix.lambda }} . ${{ secrets.ROLE_ARN }} ${{ secrets.AWS_REGION }}
+      

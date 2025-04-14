@@ -3,17 +3,15 @@ repo-root/
 ├── lambdas/
 │   ├── lambda1/
 │   │   ├── lambda_function.py
-│   │   └── requirements.txt (optional)
 │   ├── lambda2/
-│   │   ├── lambda_function.py
-│   │   └── requirements.txt
+│   │   ├── lambda_function.py  
 │   └── ...
 ├── .github/
 │   └── workflows/
 │       └── deploy-lambdas.yml
 └── scripts/
     └── deploy_lambda.py
-
+└── requirements.txt
 """
 #scripts/deploy_lambda.py
 
