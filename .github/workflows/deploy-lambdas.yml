@@ -36,7 +36,7 @@ jobs:
       - name: Install Dependencies for ${{ matrix.lambda }}
         working-directory: lambdas/${{ matrix.lambda }}
         run: |
-          pip install -r requirements.txt -t .  
+          pip install -r ../../requirements.txt -t .  
         
       - name: Deploy Lambda ${{ matrix.lambda }}
         working-directory: lambdas/${{ matrix.lambda }}
