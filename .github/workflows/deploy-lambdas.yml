@@ -38,6 +38,10 @@ jobs:
         run: |
           pip install -r ../../requirements.txt -t .  
         
+      - name: Install Deployment Dependencies
+        run: |
+          pip install boto3
+      
       - name: Deploy Lambda ${{ matrix.lambda }}
         working-directory: lambdas/${{ matrix.lambda }}
         run: |
