@@ -1,7 +1,2 @@
 boto3
-zipfile
-os
-sys
-json
 requests
-datetime
