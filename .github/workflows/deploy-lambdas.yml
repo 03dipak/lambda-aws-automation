@@ -31,7 +31,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          python pip install -r requirements.txt -t
+          pip install -r requirements.txt -t
 
       - name: Deploy Lambda1
         run: |
